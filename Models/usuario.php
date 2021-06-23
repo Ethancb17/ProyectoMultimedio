@@ -2,6 +2,8 @@
 /**
 * Modelo para el acceso a la base de datos y funciones CRUD
 */
+//require '../connection.php';
+require 'gestionEA.php';
 class Usuario
 {
 	//atributos
@@ -27,9 +29,10 @@ class Usuario
 		$this->UserNameAvatar = $UserNameAvatar;
 		$this->IdRol = $IdRol;
 		$this->EnabledUser = $EnabledUser;
-		$this->CreatedAt = $CreatedAt;
-		$this->UpdateAt = $UpdateAt;
+		$this->CreatedAt = date("Y-m-d h:i:s");
+		$this->UpdateAt = date("Y-m-d h:i:s");
 	}
+
 
     public static function all(){
 		$listaUsuarios =[];
@@ -46,18 +49,19 @@ class Usuario
     public static function save($usuario){
         try {
             $db=Db::getConnect();
-            $insert=$db->prepare('INSERT INTO user VALUES(NULL,:IdPersonal,:FirtsName, :LastName, :Email, :UserNameAvatar, :IdRol, :CreatedAt, :EnabledUser )');
+            $insert=$db->prepare('INSERT INTO user VALUES(NULL, :IdPersonal, :FirtsName, :LastName, :Email, :UserNameAvatar, NULL, :IdRol, :CreatedAt, :UpdateAt, :EnabledUser )');//POSIBLES CAMBIOS
             
             $CreatedAt = date("Y-m-d h:i:s");
 
             $insert->bindValue('IdPersonal',$usuario->IdPersonal);
             $insert->bindValue('FirtsName',$usuario->FirtsName);
-            $insert->bindValue('LastName',$usuario->email);
-            $insert->bindValue('Email',$usuario->IdPersonal);
-            $insert->bindValue('UserNameAvatar',$usuario->FirtsName);
-            $insert->bindValue('IdRol',$usuario->email);
-            $insert->bindValue('CreatedAt',$usuario->IdPersonal);
-            $insert->bindValue('EnabledUser',$usuario->FirtsName);
+            $insert->bindValue('LastName',$usuario->LastName);
+            $insert->bindValue('Email',$usuario->Email);
+            $insert->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
+            $insert->bindValue('IdRol',$usuario->IdRol);
+            $insert->bindValue('CreatedAt',$usuario->CreatedAt);
+            $insert->bindValue('UpdateAt',$usuario->UpdateAt);
+            $insert->bindValue('EnabledUser',$usuario->EnabledUser);
                         
             $insert->execute();
         } catch(Exception $ex) {
@@ -66,7 +70,7 @@ class Usuario
             $file = $ex->getFile();
             $line = $ex->getLine();
             $messagecomplet = "Exception thrown in $file on line $line: [Code $code] $message";			
-            GestionEA::saveErrores($messagecomplet, $file, $user);
+            GestionEA::saveErrores($messagecomplet, $file, $line);
             $result = "Surgio un error inesperado contacta al administrador";
         }					
     }

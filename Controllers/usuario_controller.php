@@ -3,7 +3,7 @@
 	* Descripción: Controlador para la entidad usuario
 	*/
 	//Set Var
-
+	//require '../Models/usuario.php';
 	class UsuarioController
 	{
         public function __construct(){}
@@ -48,6 +48,7 @@
 		
 			$action = $_POST['action'];
 			$IdPersonal = $_POST['IdPersonal'];
+			$FirtsName = $_POST['FirtsName'];
 			$LastName = $_POST['LastName'];
 			$Email = $_POST['Email'];
 			$UserNameAvatar = $_POST['UserNameAvatar'];
@@ -55,7 +56,7 @@
 			$EnabledUser = $_POST['EnabledUser'];
 
 		if ( $_POST['action'] == 'register' ) {
-			$usuario = new Usuario( null, $IdPersonal, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $IdRol, $EnabledUser );
+			$usuario = new Usuario( null, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $IdRol, $EnabledUser,null,null );
 			$usuarioController->save($usuario);
 		} elseif ( $_POST['action']=='update' ) {
 			$usuario= new Usuario($_POST['id'],$_POST['alias'],$_POST['nombres'],$_POST['email']);
