@@ -1,6 +1,7 @@
 <h2>Lista de Usuarios</h2>
 <div>
-	<label for="">Ingresa el dato que deseas buscar: </label><input class="form-control" id="myInput" type="text" placeholder="Search..">
+	<label for="">Ingresa el dato que deseas buscar: </label>
+	<input class="form-control" id="myInput" type="text" placeholder="Search..">
 </div>
 <table class="table table-striped" id="myTable" name="myTable">
 	<thead>
