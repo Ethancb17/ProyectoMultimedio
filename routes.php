@@ -19,7 +19,7 @@
     }
     //array con los controladores y sus respectivas acciones
 	$controllers= array(
-        'usuario'=>['index','register'],
+        'usuario'=>['index','register','update'],
         'rol'=>['index','register']//PREGUNTA: no seria rol y exatamente que llama
         );
     //verifica que el controlador enviado desde index.php esté dentro del arreglo controllers

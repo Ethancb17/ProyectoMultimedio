@@ -78,19 +78,24 @@ class Usuario
     //FALTA ACTUALIZAR CON TODOS LOS DATOS DE AQUI EN ADELANTE
     public static function update($usuario){
 		$db=Db::getConnect();
-		$update=$db->prepare('UPDATE user SET alias=:alias, nombres=:nombres, email=:email WHERE id=:id');
-		$update->bindValue('id',$usuario->id);
-		$update->bindValue('alias',$usuario->alias);
-		$update->bindValue('nombres',$usuario->nombres);
-		$update->bindValue('email',$usuario->email);
+		$update=$db->prepare('UPDATE user SET IdPersonal=:IdPersonal, FirtsName=:FirtsName, LastName=:LastName, Email=:Email, UserNameAvatar=:UserNameAvatar, IdRol=:IdRol, EnabledUser=:EnabledUser WHERE IdUser=:IdUser');
+
+		$update->bindValue('IdUser',$usuario->IdUser);
+		$update->bindValue('IdPersonal',$usuario->IdPersonal);
+		$update->bindValue('FirtsName',$usuario->FirtsName);
+		$update->bindValue('LastName',$usuario->LastName);
+		$update->bindValue('Email',$usuario->Email);
+		$update->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
+		$update->bindValue('IdRol',$usuario->IdRol);
+		$update->bindValue('EnabledUser',$usuario->EnabledUser);
 		$update->execute();
 	}
 
 	// la función para eliminar por el id
-	public static function delete($id){
+	public static function delete($IdUser){
 		$db=Db::getConnect();
-		$delete=$db->prepare('DELETE FROM user WHERE ID=:id');
-		$delete->bindValue('id',$id);
+		$delete=$db->prepare('DELETE FROM user WHERE IdUser=:IdUser');
+		$delete->bindValue('IdUser',$IdUser);
 		$delete->execute();
 	}
 
