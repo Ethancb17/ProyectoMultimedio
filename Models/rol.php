@@ -38,22 +38,18 @@ class Rol
 		return $listaRoles;
 	}
 
-    public static function save($usuario){
+    public static function save($rol){
         try {
             $db=Db::getConnect();
-            $insert=$db->prepare('INSERT INTO user VALUES(NULL, :IdPersonal, :FirtsName, :LastName, :Email, :UserNameAvatar, NULL, :IdRol, :CreatedAt, :UpdateAt, :EnabledUser )');//POSIBLES CAMBIOS
-            $CreatedAt = date("Y-m-d h:i:s");
-            $insert->bindValue('IdPersonal',$usuario->IdPersonal);
-            $insert->bindValue('FirtsName',$usuario->FirtsName);
-            $insert->bindValue('LastName',$usuario->LastName);
-            $insert->bindValue('Email',$usuario->Email);
-            $insert->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
-            $insert->bindValue('IdRol',$usuario->IdRol);
-            $insert->bindValue('CreatedAt',$usuario->CreatedAt);
-            $insert->bindValue('UpdateAt',$usuario->UpdateAt);
-            $insert->bindValue('EnabledUser',$usuario->EnabledUser);
+            $insert=$db->prepare('INSERT INTO roles VALUES(NULL, :NameRol, :IdMenu, :CreatedAt, :UpdateAt, :EnabledR)');
+            $insert->bindValue('NameRol',$rol->NameRol);
+            $insert->bindValue('IdMenu',$rol->IdMenu);
+            $insert->bindValue('CreatedAt',$rol->CreatedAt);
+            $insert->bindValue('UpdateAt',$rol->UpdateAt);
+            $insert->bindValue('EnabledR',$rol->Enabled);
             $insert->execute();
         } catch(Exception $ex) {
+
             $code = $ex->getCode();
             $message = $ex->getMessage();
             $file = $ex->getFile();
@@ -65,18 +61,14 @@ class Rol
     }
 
     //FALTA ACTUALIZAR CON TODOS LOS DATOS DE AQUI EN ADELANTE
-    public static function update($usuario){
+    public static function update($rol){
 		try {
 			$db=Db::getConnect();
-			$update=$db->prepare('UPDATE user SET IdPersonal=:IdPersonal, FirtsName=:FirtsName, LastName=:LastName, Email=:Email, UserNameAvatar=:UserNameAvatar, IdRol=:IdRol, EnabledUser=:EnabledUser WHERE IdUser=:IdUser');
-			$update->bindValue('IdUser',$usuario->IdUser);
-			$update->bindValue('IdPersonal',$usuario->IdPersonal);
-			$update->bindValue('FirtsName',$usuario->FirtsName);
-			$update->bindValue('LastName',$usuario->LastName);
-			$update->bindValue('Email',$usuario->Email);
-			$update->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
-			$update->bindValue('IdRol',$usuario->IdRol);
-			$update->bindValue('EnabledUser',$usuario->EnabledUser);
+			$update=$db->prepare('UPDATE roles SET NameRol=:NameRol, NameRol=:NameRol, IdMenu=:IdMenu, Enabled=:Enabled WHERE IdRol=:IdRol');
+			$update->bindValue('IdRol',$rol->IdRol);
+			$update->bindValue('NameRol',$rol->NameRol);
+			$update->bindValue('IdMenu',$rol->IdMenu);
+			$update->bindValue('Enabled',$rol->Enabled);
 			$update->execute();
 		} catch(Exception $ex) {
 			$code = $ex->getCode();
@@ -90,11 +82,11 @@ class Rol
 	}
 
 	// la función para eliminar por el id
-	public static function delete($IdUser){	
+	public static function delete($IdRol){	
 		try {
 			$db=Db::getConnect();
-			$delete=$db->prepare('DELETE FROM user WHERE IdUser=:IdUser');
-			$delete->bindValue('IdUser',$IdUser);
+			$delete=$db->prepare('DELETE FROM roles WHERE IdRol=:IdRol');
+			$delete->bindValue('IdRol',$IdRol);
 			$delete->execute();
 		} catch(Exception $ex) {
 			$code = $ex->getCode();
@@ -108,14 +100,16 @@ class Rol
 	}
 
 	//la función para obtener un usuario por el id
-	public static function getById($IdUser){
+	public static function getById($IdRol){
 		$db=Db::getConnect();
-		$select=$db->prepare('SELECT * FROM user WHERE IdUser=:IdUser');
-		$select->bindValue('IdUser',$IdUser);
+		$select=$db->prepare('SELECT * FROM roles WHERE IdRol=:IdRol');
+		$select->bindValue('IdRol',$IdRol);
 		$select->execute();
-		$usuarioDb=$select->fetch();
-		$usuario= new Usuario( $usuarioDb['IdUser'], $usuarioDb['IdPersonal'], $usuarioDb['FirtsName'], $usuarioDb['LastName'], $usuarioDb['Email'], $usuarioDb['UserNameAvatar'], $usuarioDb['IdRol'], $usuarioDb['EnabledUser'], $usuarioDb['CreatedAt'], $usuarioDb['UpdateAt'] );
-		return $usuario;
+		$rolDb=$select->fetch();
+		$rol= new Rol( $rolDb['IdRol'], $rolDb['NameRol'], $rolDb['IdMenu'], $rolDb['CreatedAt'], $rolDb['UpdateAt'], $rolDb['Enabled']);
+		//	$listaRoles[]= new Rol( $rol['IdRol'], $rol['NameRol'], $rol['IdMenu'], $rol['CreatedAt'], $rol['UpdateAt'], $rol['Enabled'] );
+			
+		return $rol;
 	}
 }
 ?>

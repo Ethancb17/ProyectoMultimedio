@@ -5,24 +5,24 @@
       <input type="hidden" class="form-control" id="IdUser" name="IdUser" value="<?php echo $usuario->IdUser; ?>">
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingPassword" name="IdPersonal" value="<?php echo $usuario->IdPersonal; ?>">
-      <label for="floatingPassword">IdPersonal</label>
+      <input type="text" class="form-control" id="floatingInput" name="IdPersonal" value="<?php echo $usuario->IdPersonal; ?>">
+      <label for="floatingInput">IdPersonal</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingPassword" name="FirtsName" value="<?php echo $usuario->FirtsName; ?>">
-      <label for="floatingPassword">Firts Name</label>
+      <input type="text" class="form-control" id="floatingInput" name="FirtsName" value="<?php echo $usuario->FirtsName; ?>">
+      <label for="floatingInput">Firts Name</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingPassword" name="LastName" value='<?php echo $usuario->LastName; ?>'>
-      <label for="floatingPassword">Last Name</label>
+      <input type="text" class="form-control" id="floatingInput" name="LastName" value='<?php echo $usuario->LastName; ?>'>
+      <label for="floatingInput">Last Name</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingPassword" name="Email" value='<?php echo $usuario->Email; ?>'>
-      <label for="floatingPassword">Email</label>
+      <input type="text" class="form-control" id="floatingInput" name="Email" value='<?php echo $usuario->Email; ?>'>
+      <label for="floatingInput">Email</label>
     </div>
     <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="floatingPassword" name="UserNameAvatar" value='<?php echo $usuario->UserNameAvatar; ?>'>
-      <label for="floatingPassword">UserName Avatar</label>
+      <input type="text" class="form-control" id="floatingInput" name="UserNameAvatar" value='<?php echo $usuario->UserNameAvatar; ?>'>
+      <label for="floatingInput">UserName Avatar</label>
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">

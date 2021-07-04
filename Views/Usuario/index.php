@@ -27,7 +27,6 @@
 				<td><?php echo $usuario->IdRol;?></td>
 				<td><?php echo $usuario->EnabledUser;?></td>	
 				<td><a href="?controller=usuario&action=update&id=<?php echo $usuario->IdUser ?>"><button type="button" class="btn btn-info">Actualizar</button></a> </td>
-
 				<td><a href="Controllers/usuario_controller.php?action=delete&id=<?php echo $usuario->IdUser ?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
 			</tr>		
 	<?php } ?>

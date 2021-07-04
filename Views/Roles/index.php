@@ -20,9 +20,8 @@
 				<td><?php echo $rol->NameRol; ?></td>
 				<td><?php echo $rol->IdMenu;?></td>
 				<td><?php echo $rol->Enabled;?></td>	
-				<td><a href="?controller=usuario&action=update&id=<?php echo $rol->IdRol ?>"><button type="button" class="btn btn-info">Actualizar</button></a> </td>
-
-				<td><a href="Controllers/usuario_controller.php?action=delete&id=<?php echo $rol->IdRol ?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+				<td><a href="?controller=roles&action=update&id=<?php echo $rol->IdRol ?>"><button type="button" class="btn btn-info">Actualizar</button></a> </td>
+				<td><a href="Controllers/roles_controller.php?action=delete&id=<?php echo $rol->IdRol ?>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
 			</tr>		
 	<?php } ?>
 </table>

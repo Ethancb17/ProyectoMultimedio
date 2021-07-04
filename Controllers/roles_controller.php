@@ -37,9 +37,9 @@
 
     }
 
-    //obtiene los datos del usuario desde la vista y redirecciona a UsuarioController.php
+    //obtiene los datos del usuario desde la vista y redirecciona a RolController.php
 	if (isset($_POST['action'])) {
-		$usuarioController= new UsuarioController();
+		$rolController= new RolController();
 		//se añade el archivo usuario.php
 		//require_once('../Models/usuario.php');
 		
@@ -47,43 +47,38 @@
 		//require_once('../connection.php');
 		
 			$action = $_POST['action'];
-			$IdPersonal = $_POST['IdPersonal'];
-			$FirtsName = $_POST['FirtsName'];
-			$LastName = $_POST['LastName'];
-			$Email = $_POST['Email'];
-			$UserNameAvatar = $_POST['UserNameAvatar'];
-			$IdRol = $_POST['IdRol'];
-			$EnabledUser = $_POST['EnabledUser'];
-
-		if ( $_POST['action'] == 'register' ) {
-			require_once('../Models/usuario.php');
-			require_once('../connection.php');
-			$usuario = new Usuario( null, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $IdRol, $EnabledUser,null,null );
-			$usuarioController->save($usuario);
-		} elseif ( $_POST['action']=='update' ) {
-			require_once('../Models/usuario.php');
-			require_once('../connection.php');
-			//$usuario = new Usuario( null, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $IdRol, $EnabledUser,null,null );
-			$usuarioU = new Usuario($_POST['IdUser'],$_POST['IdPersonal'],$_POST['FirtsName'],$_POST['LastName'],$_POST['Email'],$_POST['UserNameAvatar'],$_POST['IdRol'],$_POST['EnabledUser'],null,null); //Posible error
-			var_dump($usuarioU);
-			$usuarioController->update($usuarioU);
+			$NameRol = $_POST['NameRol'];
+			$IdMenu = $_POST['IdMenu'];
+			$Enabled = $_POST['EnabledR'];
 			
+            //function __construct( $IdRol, $NameRol, $IdMenu, $CreatedAt,  $UpdateAt, $Enabled)
+		if ( $_POST['action'] == 'register' ) {
+			require_once('../Models/rol.php');
+			require_once('../connection.php');
+			$rol = new Rol( null, $NameRol, $IdMenu, null, null, $Enabled );
+			$rolController->save($rol);
+		} elseif ( $_POST['action']=='update' ) {
+			require_once('../Models/rol.php');
+			require_once('../connection.php');
+            $IdRol = $_POST['IdRol'];
+			$rol = new Rol( $IdRol, $NameRol, $IdMenu, null, null, $Enabled );
+			$rolController->update($rol);
 		}		
 	}
 
 	//se verifica que action esté definida
 	if ( isset($_GET['action']) ) {
 		if ( $_GET['action'] != 'register' &$_GET['action']!='index') {
-			$usuarioController=new UsuarioController();
+			$rolController=new RolController();
 			//para eliminar
 			if ($_GET['action']=='delete') {
 				require_once('../connection.php');		
-				$usuarioController->delete($_GET['id']);
+				$rolController->delete($_GET['id']);
 			} elseif ($_GET['action']=='update') {//mostrar la vista update con los datos del registro actualizar
 				require_once('connection.php');
-				require_once('Models/usuario.php');				
-				$usuario=Usuario::getById($_GET['id']);						
-				require_once('Views/Usuario/update.php');
+				require_once('Models/rol.php');				
+				$rol=Rol::getById($_GET['id']);						
+				require_once('Views/Roles/update.php');
 			}	
 		}	
 	}

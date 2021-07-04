@@ -50,7 +50,6 @@ class Usuario
         try {
             $db=Db::getConnect();
             $insert=$db->prepare('INSERT INTO user VALUES(NULL, :IdPersonal, :FirtsName, :LastName, :Email, :UserNameAvatar, NULL, :IdRol, :CreatedAt, :UpdateAt, :EnabledUser )');//POSIBLES CAMBIOS
-            $CreatedAt = date("Y-m-d h:i:s");
             $insert->bindValue('IdPersonal',$usuario->IdPersonal);
             $insert->bindValue('FirtsName',$usuario->FirtsName);
             $insert->bindValue('LastName',$usuario->LastName);
