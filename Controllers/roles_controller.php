@@ -3,39 +3,36 @@
 	* Descripción: Controlador para la entidad usuario
 	*/
 	//Set Var
-	//require '../Models/usuario.php';
-
-
-	class UsuarioController
+	class RolController
 	{
         public function __construct(){}
-		
+
 		public function index(){
-			$usuarios=Usuario::all();
-			require_once('Views/Usuario/index.php'); 
+			$roles=Rol::all();
+			require_once('Views/Roles/index.php'); 
 		}
         public function register(){
-            require_once('Views/Usuario/register.php');
+            require_once('Views/Roles/register.php');
         }
 
-        public function save( $usuario ){
-            Usuario::save( $usuario );
+        public function save( $rol ){
+            Rol::save( $rol );
             header( 'Location: ../index.php' );
         }
 
-        public function update($usuario){
-            Usuario::update($usuario);
+        public function update($rol){
+            Rol::update($rol);
             header('Location: ../index.php');
         }
 
         public function delete($id){
-            require_once('../Models/usuario.php');
-            Usuario::delete($id);
+            require_once('../Models/rol.php');
+            Rol::delete($id);
             header('Location: ../index.php');
         }
         
 		public function error(){
-            require_once('Views/Usuario/error.php');
+            require_once('Views/Roles/error.php');
         }
 
     }

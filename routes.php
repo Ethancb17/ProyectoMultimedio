@@ -9,9 +9,9 @@
 				require_once('Models/usuario.php');
 				$controller = new UsuarioController();
 			break; 
-            case 'rol':
-                //require_once('Models/rol.php');       **FALTA**
-                //$controller = new RolController();    **FALTA**
+            case 'roles':
+                require_once('Models/rol.php');       
+                $controller = new RolController();    
             break; 
         }
         //llama a la acción del controlador
@@ -20,7 +20,7 @@
     //array con los controladores y sus respectivas acciones
 	$controllers= array(
         'usuario'=>['index','register','update'],
-        'rol'=>['index','register']//PREGUNTA: no seria rol y exatamente que llama
+        'roles'=>['index','register']//PREGUNTA: no seria rol y exatamente que llama
         );
     //verifica que el controlador enviado desde index.php esté dentro del arreglo controllers
 	if ( array_key_exists( $controller, $controllers ) ) {		

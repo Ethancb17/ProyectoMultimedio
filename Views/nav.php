@@ -26,8 +26,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Roles</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="?controller=usuario&action=register">Crear Rol</a>
-            <a class="dropdown-item" href="?controller=usuario&action=index">Ver Roles</a></td>
+            <a class="dropdown-item" href="?controller=roles&action=register">Crear Rol</a>
+            <a class="dropdown-item" href="?controller=roles&action=index">Ver Roles</a></td>
           </div>
         </li>          
         <li class="nav-item dropdown">
