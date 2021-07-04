@@ -19,15 +19,36 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Usuarios</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item <?php active('index.php?controller=usuario&action=register');?>" href="?controller=usuario&action=register">Crear Usuarios</a>
-            <a class="dropdown-item <?php active('index.php?controller=usuario&action=index');?>" href="?controller=usuario&action=index">Ver Usuarios</a></td>
+            <a class="dropdown-item <?php active('?controller=usuario&action=register');?>" href="?controller=usuario&action=register">Crear Usuario</a>
+            <a class="dropdown-item <?php active('?controller=usuario&action=index');?>" href="?controller=usuario&action=index">Ver Usuarios</a></td>
           </div>
         </li> 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Roles</a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="?controller=usuario&action=register">Crear Rol</a>
-            <a class="dropdown-item" href="?controller=usuario&action=index">Ver Rol</a></td>
+            <a class="dropdown-item" href="?controller=usuario&action=index">Ver Roles</a></td>
+          </div>
+        </li>          
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="?controller=usuario&action=register">Crear Menu</a>
+            <a class="dropdown-item" href="?controller=usuario&action=index">Ver Menus</a></td>
+          </div>
+        </li>          
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Controller</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="?controller=usuario&action=register">Crear Controller</a>
+            <a class="dropdown-item" href="?controller=usuario&action=index">Ver Controllers</a></td>
+          </div>
+        </li>          
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Relacion M-C</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="?controller=usuario&action=register">Crear Relacion</a>
+            <a class="dropdown-item" href="?controller=usuario&action=index">Ver Relaciones</a></td>
           </div>
         </li>          
       </ul>

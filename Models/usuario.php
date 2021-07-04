@@ -77,26 +77,46 @@ class Usuario
 
     //FALTA ACTUALIZAR CON TODOS LOS DATOS DE AQUI EN ADELANTE
     public static function update($usuario){
-		$db=Db::getConnect();
-		$update=$db->prepare('UPDATE user SET IdPersonal=:IdPersonal, FirtsName=:FirtsName, LastName=:LastName, Email=:Email, UserNameAvatar=:UserNameAvatar, IdRol=:IdRol, EnabledUser=:EnabledUser WHERE IdUser=:IdUser');
+		try {
+			$db=Db::getConnect();
+			$update=$db->prepare('UPDATE user SET IdPersonal=:IdPersonal, FirtsName=:FirtsName, LastName=:LastName, Email=:Email, UserNameAvatar=:UserNameAvatar, IdRol=:IdRol, EnabledUser=:EnabledUser WHERE IdUser=:IdUser');
 
-		$update->bindValue('IdUser',$usuario->IdUser);
-		$update->bindValue('IdPersonal',$usuario->IdPersonal);
-		$update->bindValue('FirtsName',$usuario->FirtsName);
-		$update->bindValue('LastName',$usuario->LastName);
-		$update->bindValue('Email',$usuario->Email);
-		$update->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
-		$update->bindValue('IdRol',$usuario->IdRol);
-		$update->bindValue('EnabledUser',$usuario->EnabledUser);
-		$update->execute();
+			$update->bindValue('IdUser',$usuario->IdUser);
+			$update->bindValue('IdPersonal',$usuario->IdPersonal);
+			$update->bindValue('FirtsName',$usuario->FirtsName);
+			$update->bindValue('LastName',$usuario->LastName);
+			$update->bindValue('Email',$usuario->Email);
+			$update->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
+			$update->bindValue('IdRol',$usuario->IdRol);
+			$update->bindValue('EnabledUser',$usuario->EnabledUser);
+			$update->execute();
+		} catch(Exception $ex) {
+			$code = $ex->getCode();
+			$message = $ex->getMessage();
+			$file = $ex->getFile();
+			$line = $ex->getLine();
+			$messagecomplet = "Exception thrown in $file on line $line: [Code $code] $message";			
+			GestionEA::saveErrores($messagecomplet, $file, $line);
+			$result = "Surgio un error inesperado contacta al administrador";
+		}
 	}
 
 	// la función para eliminar por el id
-	public static function delete($IdUser){
-		$db=Db::getConnect();
-		$delete=$db->prepare('DELETE FROM user WHERE IdUser=:IdUser');
-		$delete->bindValue('IdUser',$IdUser);
-		$delete->execute();
+	public static function delete($IdUser){	
+		try {
+			$db=Db::getConnect();
+			$delete=$db->prepare('DELETE FROM user WHERE IdUser=:IdUser');
+			$delete->bindValue('IdUser',$IdUser);
+			$delete->execute();
+		} catch(Exception $ex) {
+			$code = $ex->getCode();
+			$message = $ex->getMessage();
+			$file = $ex->getFile();
+			$line = $ex->getLine();
+			$messagecomplet = "Exception thrown in $file on line $line: [Code $code] $message";			
+			GestionEA::saveErrores($messagecomplet, $file, $line);
+			$result = "Surgio un error inesperado contacta al administrador";
+		}
 	}
 
 	//la función para obtener un usuario por el id
