@@ -17,6 +17,10 @@
                 require_once('Models/menu.php');       
                 $controller = new MenuController();    
             break; 
+            case 'control':
+                require_once('Models/control.php');       
+                $controller = new ControlController();    
+            break; 
         }
         //llama a la acción del controlador
         $controller->{ $action }();
@@ -25,7 +29,8 @@
 	$controllers= array(
         'usuario'=>['index','register','update'],
         'roles'=>['index','register'],
-        'menu'=>['index','register']
+        'menu'=>['index','register'],
+        'control'=>['index','register']
         );
     //verifica que el controlador enviado desde index.php esté dentro del arreglo controllers
 	if ( array_key_exists( $controller, $controllers ) ) {		

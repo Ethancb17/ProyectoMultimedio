@@ -40,8 +40,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Controller</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="?controller=usuario&action=register">Crear Controller</a>
-            <a class="dropdown-item" href="?controller=usuario&action=index">Ver Controllers</a></td>
+            <a class="dropdown-item" href="?controller=control&action=register">Crear Controller</a>
+            <a class="dropdown-item" href="?controller=control&action=index">Ver Controllers</a></td>
           </div>
         </li>          
         <li class="nav-item dropdown">

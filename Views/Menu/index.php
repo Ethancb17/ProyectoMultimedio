@@ -12,7 +12,6 @@
 		<th>Enabled</th>
 		<th colspan=2 >Acciones</th>		
 	</thead>
-	<!--function __construct( $IdRol, $NameRol, $IdMenu, $CreatedAt,  $UpdateAt, $Enabled)-->
    <?php
 	foreach ($menus as $menu) { ?>		
 			<tr>
