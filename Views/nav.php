@@ -19,22 +19,22 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Usuarios</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item <?php active('?controller=usuario&action=register');?>" href="?controller=usuario&action=register">Crear Usuario</a>
-            <a class="dropdown-item <?php active('?controller=usuario&action=index');?>" href="?controller=usuario&action=index">Ver Usuarios</a></td>
+            <a class="dropdown-item <?php active('index.php?controller=usuario&action=register');?>" href="?controller=usuario&action=register">Crear Usuario</a>
+            <a class="dropdown-item <?php active('index.php?controller=usuario&action=index');?>" href="?controller=usuario&action=index">Ver Usuarios</a></td>
           </div>
         </li> 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Roles</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="?controller=roles&action=register">Crear Rol</a>
-            <a class="dropdown-item" href="?controller=roles&action=index">Ver Roles</a></td>
+            <a class="dropdown-item <?php active('index.php?controller=roles&action=register');?>" href="?controller=roles&action=register">Crear Rol</a>
+            <a class="dropdown-item <?php active('index.php?controller=roles&action=index');?>" href="?controller=roles&action=index">Ver Roles</a></td>
           </div>
         </li>          
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Menu</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="?controller=usuario&action=register">Crear Menu</a>
-            <a class="dropdown-item" href="?controller=usuario&action=index">Ver Menus</a></td>
+            <a class="dropdown-item <?php active('index.php?controller=menu&action=register');?>" href="?controller=menu&action=register">Crear Menu</a>
+            <a class="dropdown-item <?php active('index.php?controller=menu&action=index');?>" href="?controller=menu&action=index">Ver Menus</a></td>
           </div>
         </li>          
         <li class="nav-item dropdown">

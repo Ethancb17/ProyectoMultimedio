@@ -13,6 +13,10 @@
                 require_once('Models/rol.php');       
                 $controller = new RolController();    
             break; 
+            case 'menu':
+                require_once('Models/menu.php');       
+                $controller = new MenuController();    
+            break; 
         }
         //llama a la acción del controlador
         $controller->{ $action }();
@@ -20,7 +24,8 @@
     //array con los controladores y sus respectivas acciones
 	$controllers= array(
         'usuario'=>['index','register','update'],
-        'roles'=>['index','register']//PREGUNTA: no seria rol y exatamente que llama
+        'roles'=>['index','register'],
+        'menu'=>['index','register']
         );
     //verifica que el controlador enviado desde index.php esté dentro del arreglo controllers
 	if ( array_key_exists( $controller, $controllers ) ) {		
