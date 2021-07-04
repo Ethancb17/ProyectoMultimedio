@@ -50,9 +50,7 @@ class Usuario
         try {
             $db=Db::getConnect();
             $insert=$db->prepare('INSERT INTO user VALUES(NULL, :IdPersonal, :FirtsName, :LastName, :Email, :UserNameAvatar, NULL, :IdRol, :CreatedAt, :UpdateAt, :EnabledUser )');//POSIBLES CAMBIOS
-            
             $CreatedAt = date("Y-m-d h:i:s");
-
             $insert->bindValue('IdPersonal',$usuario->IdPersonal);
             $insert->bindValue('FirtsName',$usuario->FirtsName);
             $insert->bindValue('LastName',$usuario->LastName);
@@ -62,7 +60,6 @@ class Usuario
             $insert->bindValue('CreatedAt',$usuario->CreatedAt);
             $insert->bindValue('UpdateAt',$usuario->UpdateAt);
             $insert->bindValue('EnabledUser',$usuario->EnabledUser);
-                        
             $insert->execute();
         } catch(Exception $ex) {
             $code = $ex->getCode();
@@ -80,7 +77,6 @@ class Usuario
 		try {
 			$db=Db::getConnect();
 			$update=$db->prepare('UPDATE user SET IdPersonal=:IdPersonal, FirtsName=:FirtsName, LastName=:LastName, Email=:Email, UserNameAvatar=:UserNameAvatar, IdRol=:IdRol, EnabledUser=:EnabledUser WHERE IdUser=:IdUser');
-
 			$update->bindValue('IdUser',$usuario->IdUser);
 			$update->bindValue('IdPersonal',$usuario->IdPersonal);
 			$update->bindValue('FirtsName',$usuario->FirtsName);
@@ -121,12 +117,10 @@ class Usuario
 
 	//la función para obtener un usuario por el id
 	public static function getById($IdUser){
-		//buscar
 		$db=Db::getConnect();
 		$select=$db->prepare('SELECT * FROM user WHERE IdUser=:IdUser');
 		$select->bindValue('IdUser',$IdUser);
 		$select->execute();
-		//asignarlo al objeto usuario
 		$usuarioDb=$select->fetch();
 		$usuario= new Usuario( $usuarioDb['IdUser'], $usuarioDb['IdPersonal'], $usuarioDb['FirtsName'], $usuarioDb['LastName'], $usuarioDb['Email'], $usuarioDb['UserNameAvatar'], $usuarioDb['IdRol'], $usuarioDb['EnabledUser'], $usuarioDb['CreatedAt'], $usuarioDb['UpdateAt'] );
 		return $usuario;
