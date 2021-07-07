@@ -17,9 +17,10 @@ class Usuario
 	public $EnabledUser;
 	public $CreatedAt;
 	public $UpdateAt;
+	public $Pass;
 
 	//constructor de la clase
-	function __construct( $IdUser, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $IdRol, $EnabledUser, $CreatedAt,  $UpdateAt)
+	function __construct( $IdUser, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $Pass, $IdRol, $EnabledUser, $CreatedAt,  $UpdateAt)
 	{
 		$this->IdUser = $IdUser;
 		$this->IdPersonal = $IdPersonal;
@@ -27,6 +28,7 @@ class Usuario
 		$this->LastName = $LastName;
 		$this->Email = $Email;
 		$this->UserNameAvatar = $UserNameAvatar;
+		$this->Pass = $Pass;
 		$this->IdRol = $IdRol;
 		$this->EnabledUser = $EnabledUser;
 		$this->CreatedAt = date("Y-m-d h:i:s");
@@ -41,7 +43,7 @@ class Usuario
 
 		// carga en la $listaUsuarios cada registro desde la base de datos
 		foreach ($sql->fetchAll() as $usuario) {
-			$listaUsuarios[]= new Usuario( $usuario['IdUser'], $usuario['IdPersonal'], $usuario['FirtsName'], $usuario['LastName'], $usuario['Email'], $usuario['UserNameAvatar'], $usuario['IdRol'], $usuario['EnabledUser'], $usuario['CreatedAt'], $usuario['UpdateAt'] );
+			$listaUsuarios[]= new Usuario( $usuario['IdUser'], $usuario['IdPersonal'], $usuario['FirtsName'], $usuario['LastName'], $usuario['Email'], $usuario['UserNameAvatar'],NULL, $usuario['IdRol'], $usuario['EnabledUser'], $usuario['CreatedAt'], $usuario['UpdateAt'] );
 		}
 		return $listaUsuarios;
 	}
@@ -49,12 +51,13 @@ class Usuario
     public static function save($usuario){
         try {
             $db=Db::getConnect();
-            $insert=$db->prepare('INSERT INTO user VALUES(NULL, :IdPersonal, :FirtsName, :LastName, :Email, :UserNameAvatar, NULL, :IdRol, :CreatedAt, :UpdateAt, :EnabledUser )');//POSIBLES CAMBIOS
+            $insert=$db->prepare('INSERT INTO user VALUES(NULL, :IdPersonal, :FirtsName, :LastName, :Email, :UserNameAvatar, :Pass, :IdRol, :CreatedAt, :UpdateAt, :EnabledUser )');//POSIBLES CAMBIOS
             $insert->bindValue('IdPersonal',$usuario->IdPersonal);
             $insert->bindValue('FirtsName',$usuario->FirtsName);
             $insert->bindValue('LastName',$usuario->LastName);
             $insert->bindValue('Email',$usuario->Email);
             $insert->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
+            $insert->bindValue('Pass',$usuario->Pass);
             $insert->bindValue('IdRol',$usuario->IdRol);
             $insert->bindValue('CreatedAt',$usuario->CreatedAt);
             $insert->bindValue('UpdateAt',$usuario->UpdateAt);
@@ -121,7 +124,7 @@ class Usuario
 		$select->bindValue('IdUser',$IdUser);
 		$select->execute();
 		$usuarioDb=$select->fetch();
-		$usuario= new Usuario( $usuarioDb['IdUser'], $usuarioDb['IdPersonal'], $usuarioDb['FirtsName'], $usuarioDb['LastName'], $usuarioDb['Email'], $usuarioDb['UserNameAvatar'], $usuarioDb['IdRol'], $usuarioDb['EnabledUser'], $usuarioDb['CreatedAt'], $usuarioDb['UpdateAt'] );
+		$usuario= new Usuario( $usuarioDb['IdUser'], $usuarioDb['IdPersonal'], $usuarioDb['FirtsName'], $usuarioDb['LastName'], $usuarioDb['Email'], $usuarioDb['UserNameAvatar'],NULL,$usuarioDb['IdRol'], $usuarioDb['EnabledUser'], $usuarioDb['CreatedAt'], $usuarioDb['UpdateAt'] );
 		return $usuario;
 	}
 }

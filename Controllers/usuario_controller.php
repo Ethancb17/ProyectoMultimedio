@@ -22,6 +22,11 @@
             Usuario::save( $usuario );
             header( 'Location: ../index.php' );
         }
+        public function new( $usuario ){
+            Usuario::save( $usuario );
+			echo '<script type="text/javascript">alert("UsuarioCreadoConExito");</script>';
+            header( 'Location: ../login.php' );
+        }
 
         public function update($usuario){
             Usuario::update($usuario);
@@ -61,16 +66,21 @@
 		if ( $_POST['action'] == 'register' ) {
 			require_once('../Models/usuario.php');
 			require_once('../connection.php');
-			$usuario = new Usuario( null, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $IdRol, $EnabledUser,null,null );
+			$usuario = new Usuario( null, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, null,$IdRol, $EnabledUser,null,null );
 			$usuarioController->save($usuario);
 		} elseif ( $_POST['action']=='update' ) {
 			require_once('../Models/usuario.php');
 			require_once('../connection.php');
 			//$usuario = new Usuario( null, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $IdRol, $EnabledUser,null,null );
-			$usuarioU = new Usuario($_POST['IdUser'],$_POST['IdPersonal'],$_POST['FirtsName'],$_POST['LastName'],$_POST['Email'],$_POST['UserNameAvatar'],$_POST['IdRol'],$_POST['EnabledUser'],null,null); //Posible error
+			$usuarioU = new Usuario($_POST['IdUser'],$_POST['IdPersonal'],$_POST['FirtsName'],$_POST['LastName'],$_POST['Email'],$_POST['UserNameAvatar'],null,$_POST['IdRol'],$_POST['EnabledUser'],null,null); //Posible error
 			var_dump($usuarioU);
 			$usuarioController->update($usuarioU);
-			
+		}elseif ( $_POST['action']=='new' ) {
+			require_once('../Models/usuario.php');
+			require_once('../connection.php');
+			$Pass = $_POST['Pass'];
+			$usuario = new Usuario( null, $IdPersonal, $FirtsName, $LastName, $Email, $UserNameAvatar, $Pass, $IdRol, $EnabledUser,null,null );
+			$usuarioController->new($usuario);
 		}		
 	}
 
