@@ -24,7 +24,7 @@
         }
         public function new( $usuario ){
             Usuario::save( $usuario );
-			echo '<script type="text/javascript">alert("UsuarioCreadoConExito");</script>';
+			//echo '<script type="text/javascript">alert("UsuarioCreadoConExito");</script>';
             header( 'Location: ../login.php' );
         }
 

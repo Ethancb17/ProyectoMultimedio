@@ -110,24 +110,27 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalLabel">Recuperar Contraseña</h5>
+    <form action="Controllers/login_controller.php" class="form" method="post">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recuperar Contraseña</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-floating mb-3">
+            <input type='hidden' name='action' value='recuperar'>
+            <input type="text" class="form-control" id="floatingPassword" placeholder="Ingrese la contraseña" name="Email" required>
+            <label for="floatingPassword">Email</label>
+          </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="summit" class="btn btn-primary">Recuperar</button>
+        </div>
       </div>
-      <div class="modal-body">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingPassword" placeholder="Ingrese la contraseña" name="Email" required>
-          <label for="floatingPassword">Email</label>
-        </div> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Recuperar</button>
-      </div>
-    </div>
+    </form>
   </div>
 </div>
 <?php require_once('Views/footer.php'); ?>
