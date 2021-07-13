@@ -27,10 +27,10 @@ $action = $_POST['action'];
 					</script>';
 		}
 
-		public function recuperar(){
-				$usuarios = Login::recuperarContrasenia();
+		public function recuperar(string $mail){
+				$recuperacion = Login::recuperarContrasenia($mail);
 				echo '<script type="text/javascript">
-						alert("recuperar clave!");
+						alert("'.$recuperacion.'");
 						window.location.href="../login.php";
 					</script>';
 				//echo '<script type="text/javascript">alert("recuperar clave!");</script>';
@@ -45,7 +45,7 @@ $action = $_POST['action'];
 	}else if ( $action == 'recuperar' ){
 		$mail = $_POST['Email'];
 		$usuarioController = new LoginController();
-		$usuarioController->recuperar();
+		$usuarioController->recuperar($mail);
 	}else if ( $action == 'crear' ){
 		$usuarioController = new LoginController();
 		$usuarioController->recuperar();
