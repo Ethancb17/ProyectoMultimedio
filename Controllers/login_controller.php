@@ -18,15 +18,6 @@ $action = $_POST['action'];
 					  </script>';
 		}
 
-		public function AAAA(string $mail){
-				$usuarios = Login::consultarClave( $mail );
-				//header( 'Location: ../login.php' );
-				echo '<script type="text/javascript">
-						alert("recuperar clave!");
-						window.location.href="../login.php";
-					</script>';
-		}
-
 		public function recuperar(string $mail){
 				$recuperacion = Login::recuperarContrasenia($mail);
 				echo '<script type="text/javascript">
@@ -46,9 +37,6 @@ $action = $_POST['action'];
 		$mail = $_POST['Email'];
 		$usuarioController = new LoginController();
 		$usuarioController->recuperar($mail);
-	}else if ( $action == 'crear' ){
-		$usuarioController = new LoginController();
-		$usuarioController->recuperar();
 	}
 
 ?>

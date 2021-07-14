@@ -50,19 +50,30 @@ class Usuario
 
     public static function save($usuario){
         try {
+			$result = "";
             $db=Db::getConnect();
-            $insert=$db->prepare('INSERT INTO user VALUES(NULL, :IdPersonal, :FirtsName, :LastName, :Email, :UserNameAvatar, :Pass, :IdRol, :CreatedAt, :UpdateAt, :EnabledUser )');//POSIBLES CAMBIOS
-            $insert->bindValue('IdPersonal',$usuario->IdPersonal);
-            $insert->bindValue('FirtsName',$usuario->FirtsName);
-            $insert->bindValue('LastName',$usuario->LastName);
-            $insert->bindValue('Email',$usuario->Email);
-            $insert->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
-            $insert->bindValue('Pass',$usuario->Pass);
-            $insert->bindValue('IdRol',$usuario->IdRol);
-            $insert->bindValue('CreatedAt',$usuario->CreatedAt);
-            $insert->bindValue('UpdateAt',$usuario->UpdateAt);
-            $insert->bindValue('EnabledUser',$usuario->EnabledUser);
-            $insert->execute();
+			$select=$db->prepare('SELECT * FROM user WHERE IdPersonal=:IdPersonal');
+			$select->bindValue('IdPersonal',$usuario->IdPersonal);
+			$select->execute();
+			$usuarioDb=$select->fetch();
+			if($usuarioDb!=null){
+				$result = "Ya se encuentra un usuario con ese idUser";
+			}else{
+				$insert=$db->prepare('INSERT INTO user VALUES(NULL, :IdPersonal, :FirtsName, :LastName, :Email, :UserNameAvatar, :Pass, :IdRol, :CreatedAt, :UpdateAt, :EnabledUser )');//POSIBLES CAMBIOS
+				$insert->bindValue('IdPersonal',$usuario->IdPersonal);
+				$insert->bindValue('FirtsName',$usuario->FirtsName);
+				$insert->bindValue('LastName',$usuario->LastName);
+				$insert->bindValue('Email',$usuario->Email);
+				$insert->bindValue('UserNameAvatar',$usuario->UserNameAvatar);
+				$insert->bindValue('Pass',$usuario->Pass);
+				$insert->bindValue('IdRol',$usuario->IdRol);
+				$insert->bindValue('CreatedAt',$usuario->CreatedAt);
+				$insert->bindValue('UpdateAt',$usuario->UpdateAt);
+				$insert->bindValue('EnabledUser',$usuario->EnabledUser);
+				$insert->execute();
+				$result = "Se agrego el usuario de forma satisfactoria";
+			}
+        	return $result;
         } catch(Exception $ex) {
             $code = $ex->getCode();
             $message = $ex->getMessage();
@@ -74,7 +85,6 @@ class Usuario
         }					
     }
 
-    //FALTA ACTUALIZAR CON TODOS LOS DATOS DE AQUI EN ADELANTE
     public static function update($usuario){
 		try {
 			$db=Db::getConnect();

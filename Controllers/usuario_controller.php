@@ -23,9 +23,12 @@
             header( 'Location: ../index.php' );
         }
         public function new( $usuario ){
-            Usuario::save( $usuario );
-			//echo '<script type="text/javascript">alert("UsuarioCreadoConExito");</script>';
-            header( 'Location: ../login.php' );
+            $nuevoUsuario = Usuario::save( $usuario );
+			echo '<script type="text/javascript">
+						alert("'.$nuevoUsuario.'");
+						window.location.href="../login.php";
+					</script>';
+            //header( 'Location: ../login.php' );
         }
 
         public function update($usuario){
